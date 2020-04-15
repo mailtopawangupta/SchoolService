@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+		<spring-cloud-services.version>2.0.1.RELEASE</spring-cloud-services.version>
 	</properties>
 
 	<dependencies>
@@ -24,9 +25,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- Uncomment this dependency when Eureka Client is used -->
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency> 
+		-->
+		
+		<!-- Uncomment this dependency when Pivotal Service Registry is used -->
+		<dependency>
+			<groupId>io.pivotal.spring.cloud</groupId>
+			<artifactId>spring-cloud-services-starter-service-registry</artifactId>
 		</dependency>
 
 		<dependency>
@@ -44,13 +54,25 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+		
+				<!-- This is required when Eureka client is used -->
+				<dependency>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-dependencies</artifactId>
+					<version>${spring-cloud.version}</version>
+					<type>pom</type>
+					<scope>import</scope>
+				</dependency>
+				
+				<!-- This is required when Pivotal Service Registry is used -->
+				<dependency>
+					<groupId>io.pivotal.spring.cloud</groupId>
+					<artifactId>spring-cloud-services-dependencies</artifactId>
+					<version>${spring-cloud-services.version}</version>
+					<type>pom</type>
+					<scope>import</scope>
+				</dependency>
+				
 		</dependencies>
 	</dependencyManagement>
 
